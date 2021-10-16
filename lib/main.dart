@@ -9,7 +9,7 @@ void main() => runApp(MaterialApp(
       title: 'Chun mun expense tracker',
       theme: ThemeData(
           primarySwatch: Colors.blueGrey,
-          primaryColor: Colors.purple,
+          primaryColor: Colors.deepPurple.shade500,
           fontFamily: 'OpenSans'),
       home: MyApp(),
     ));
@@ -116,7 +116,7 @@ class _MyAppState extends State<MyApp> {
               onPressed: () => _showNewTransaction(context),
             )
           ],
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.deepPurple.shade500,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -129,7 +129,7 @@ class _MyAppState extends State<MyApp> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.deepPurple.shade500,
           hoverColor: Colors.blueAccent,
           child: Icon(Icons.add),
           onPressed: () => _showNewTransaction(context),

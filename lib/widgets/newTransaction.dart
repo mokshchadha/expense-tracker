@@ -52,9 +52,9 @@ class _NewTransactionState extends State<NewTransaction> {
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               labelText: 'How much did you pay for it?',
-              labelStyle: TextStyle(color: Colors.purpleAccent.shade100),
+              labelStyle: TextStyle(color: Colors.deepPurpleAccent.shade100),
             ),
-            style: TextStyle(color: Colors.purpleAccent.shade100),
+            style: TextStyle(color: Colors.deepPurpleAccent.shade100),
             onSubmitted: (_) => submitData(context),
           ),
           TextButton(
