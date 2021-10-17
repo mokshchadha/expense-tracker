@@ -36,11 +36,20 @@ class _MyAppState extends State<MyApp> {
         : [];
   }
 
+  Future<void> _deleteTransaction(String id) async {
+    print("deleting $id");
+    await Constants.DB
+        .collection(Constants.TRANSACTIONS)
+        .doc(id.replaceAll('/transactions/', ''))
+        .delete();
+    fetchExistingTransactionFromDB();
+  }
+
   Future<void> fetchExistingTransactionFromDB() async {
     var allTransactionsObj =
         await Constants.DB.collection(Constants.TRANSACTIONS).get();
 
-    print("#############################################");
+    print("-----------------------------------------------");
     print(allTransactionsObj);
 
     List<Transaction> allTransactions = allTransactionsObj != null
@@ -71,13 +80,11 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  Future<void> _addNewTransaction(String txTitle, double txAmount) async {
-    final newTx = Transaction(
-        id: DateTime.now().toString(),
-        title: txTitle,
-        amount: txAmount,
-        date: DateTime.now());
+  Future<void> _addNewTransaction(
+      String txTitle, double txAmount, DateTime date) async {
     final id = Constants.DB.collection(Constants.TRANSACTIONS).doc().id;
+    final newTx =
+        Transaction(id: id, title: txTitle, amount: txAmount, date: date);
     await Constants.DB.collection(Constants.TRANSACTIONS).doc(id).set({
       'title': newTx.title,
       'amount': newTx.amount,
@@ -123,7 +130,7 @@ class _MyAppState extends State<MyApp> {
             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Chart(_recentTransactions),
-              TransactionList(_userTransactions)
+              TransactionList(_userTransactions, _deleteTransaction)
             ],
           ),
         ),
