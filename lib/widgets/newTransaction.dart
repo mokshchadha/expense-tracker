@@ -13,7 +13,7 @@ class _NewTransactionState extends State<NewTransaction> {
   final titleInputController = TextEditingController();
 
   final amountInputController = TextEditingController();
-  var selectedDate = null;
+  DateTime selectedDate = DateTime.now();
 
   void submitData(context) {
     var enteredAmount = amountInputController.text.isEmpty
